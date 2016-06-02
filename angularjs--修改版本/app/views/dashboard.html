@@ -1,0 +1,638 @@
+<br>
+<div ng-controller="DashboardController as table" class="container-fluid">
+
+  <!--发车计划添加、导入和导出-->
+
+  <div class="row">
+
+    <!--发车计划添加-->
+
+    <!--<div class="col-sm-2" >-->
+
+      <!--&lt;!&ndash;发车计划添加模态框&ndash;&gt;-->
+
+      <!--<div ng-controller="ModalController as mod" >-->
+        <!--<script type="text/ng-template" id="/myModalContent.html">-->
+          <!--<div style="z-index: 2; position:relative;" >-->
+          <!--<div class="modal-header">-->
+            <!--<h4 class="modal-title">发车计划添加</h4>-->
+          <!--</div>-->
+          <!--<div class="modal-body container-fluid">-->
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>公司</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<select ng-model="mod.gs" style="width:163px;" ng-change="gsSelect()" required>-->
+                  <!--<option>哈尔滨总公司</option>-->
+                  <!--<option>哈尔滨总公司1</option>-->
+                <!--</select>-->
+
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>分公司</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<select ng-model="mod.fgs" style="width:163px;" ng-change="fgsSelect()" required>-->
+                  <!--<option  ng-repeat="data in mod.fgsdata" >{{data.fgs}}</option>-->
+
+                <!--</select>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>车队</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<select ng-model="mod.cd" style="width:163px;" ng-change="cdSelect()" required>-->
+                  <!--<option  ng-repeat="data in mod.cddata" >{{data.cd}}</option>-->
+
+                <!--</select>-->
+
+                <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>线路</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<select ng-model="mod.xl" style="width:163px;" required>-->
+                  <!--<option  ng-repeat="data in mod.xldata" >{{data.xl}}</option>-->
+
+                <!--</select>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>车牌号</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.cph" required/>-->
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>车次号</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.cch" required/>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>出发站</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.cfz" required/>-->
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>计划发车时间</p>-->
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<div class="form-group">-->
+                  <!--<div>-->
+                    <!--<p class="input-group">-->
+                      <!--<input type="text" ng-model="mod.jhfcsj" class="form-control" id="inpstart" placeholder="起始时间">-->
+            <!--<span class="input-group-btn">-->
+                <!--<button type="button" onclick="jeDate({dateCell: '#inpstart'})" class="btn btn-default">-->
+                  <!--<em class="ion-calendar">-->
+                  <!--</em>-->
+                <!--</button>-->
+            <!--</span>-->
+                    <!--</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>实际发车时间</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.sjfcsj" required/>-->
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>计划到达时间</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.jhddsj" required/>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+              <!--<div class="col-sm-3">-->
+                <!--<p>实际到达时间</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.sjddsj" required/>-->
+              <!--</div>-->
+
+              <!--<div class="col-sm-3">-->
+                <!--<p>添加人姓名</p>-->
+              <!--</div>-->
+              <!--<div class="col-sm-3">-->
+                <!--<input type="text" ng-model="mod.tjrxm" required/>-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+
+          <!--<div class="modal-footer">-->
+            <!--<button ng-click="ok()" class="btn btn-primary">添加</button>-->
+            <!--<button ng-click="cancel()" class="btn btn-warning">取消</button>-->
+          <!--</div>-->
+          <!--</div>-->
+        <!--</script>-->
+        <!--<div class="col-sm-2">-->
+          <!--<button ng-click="mod.open('lg')" class="btn btn-primary">发车计划添加</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--导入-->
+
+    <div class="col-sm-2">
+      <!--导入模态框-->
+      <div ng-controller="ModalController2 as mod">
+        <script type="text/ng-template" id="/myModalContent2.html">
+          <div class="modal-header">
+            <h3 id="myModalLabel" class="modal-title">导入发车计划</h3>
+          </div>
+          <div class="modal-body">
+            <div ng-controller="FileUploadController as form" nv-file-drop="" uploader="form.uploader"
+                 filters="queueLimit, customFilter">
+              <div class="row">
+                <div class="col-md-12">
+                  <div ng-show="form.uploader.isHTML5">
+                    <div nv-file-over="" uploader="form.uploader"
+                         over-class="bg-info"
+                         class="box-placeholder my-drop-zone">将文件拖拽到这里
+                    </div>
+                  </div>
+                  <input filestyle="" type="file" data-button-text="选择文件"
+                         data-class-button="btn btn-default"
+                         data-class-input="form-control inline" nv-file-select=""
+                         uploader="form.uploader" class="form-control"/>
+                </div>
+              </div>
+              <div class="row">
+                <div style="margin-bottom: 40px" class="col-md-12">
+                  <div class="table">
+                    <p align="center">导入的文件列表</p>
+
+                    <div ng-if="form.uploader.queue.length">
+                      <table ng-if="form.uploader.queue.length" class="table">
+                        <thead>
+                        <tr>
+                          <th width="50%">文件名</th>
+                          <th ng-show="form.uploader.isHTML5">文件大小</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in form.uploader.queue">
+                          <td><strong>{{ item.file.name }}</strong></td>
+                          <td ng-show="form.uploader.isHTML5" nowrap="">{{
+                            item.file.size/1024/1024|number:2 }} MB
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button ng-click="ok()" class="btn btn-primary">导入</button>
+            <button ng-click="cancel()" class="btn btn-warning">取消</button>
+          </div>
+        </script>
+        <button ng-click="mod.open()" class="btn btn-primary">导入</button>
+      </div>
+    </div>
+
+    <!--导出-->
+
+    <div class="col-sm-2">
+
+
+
+      <input id="Button1" class="btn btn-primary" type="button" value="导出" onclick="javascript:method1('targetTable')" />
+    </div>
+</div>
+  <br/>
+
+
+  <div class="row">
+    <!--发车计划添加-->
+
+
+
+      <!--发车计划添加模态框-->
+
+
+
+
+    <div class="col-md-1">
+      <select id="sele" name="account" ng-model=table.select class="form-control" style="min-width: 88px">
+        <option value="gs">公司</option>
+        <option value="fgs">分公司</option>
+        <option value="cd">车队</option>
+        <option value="xl">线路</option>
+        <option value="cph">车牌号</option>
+      </select><br/>
+    </div>
+    <div class="col-md-2">
+      <input type="text" ng-model=table.chaxun id="ssjga" class="form-control" style="min-width: 120px" required/>
+    </div>
+
+    <div class="col-md-3">
+      <button type="button" ng-click="chaXun()" class="mb-sm btn btn-primary ripple">查询</button>
+    </div>
+  </div>
+
+  <div ng-controller="ModalController as mod" >
+    <script type="text/ng-template" id="/myModalContent.html">
+      <div class="modal-content" style="min-width:770px;" >
+      <div style="z-index: 2; position:relative;" >
+        <div class="modal-header">
+          <h4 class="modal-title">发车计划添加</h4>
+        </div>
+        <div class="modal-body container-fluid">
+          <div class="row">
+            <div class="col-sm-3">
+              <p>公司</p>
+            </div>
+            <div class="col-sm-3">
+              <select ng-model="mod.gs" style="width:163px;" ng-change="gsSelect()" required>
+
+                <option>哈尔滨总公司</option>
+                <option>哈尔滨总公司1</option>
+                <option>哈尔滨总公司3</option>
+                <option>哈尔滨工程总公司1</option>
+              </select>
+
+            </div>
+
+            <div class="col-sm-3">
+              <p>分公司</p>
+            </div>
+            <div class="col-sm-3">
+              <select ng-model="mod.fgs"  style="width:163px;" ng-change="fgsSelect()" required>
+                <option    ng-repeat="data in mod.fgsdata" >{{data.fgs}}</option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <p>车队</p>
+            </div>
+            <div class="col-sm-3">
+              <select ng-model="mod.cd" style="width:163px;" ng-change="cdSelect()" required>
+                <option  ng-repeat="data in mod.cddata" >{{data.cd}}</option>
+              </select>
+
+            </div>
+
+            <div class="col-sm-3">
+              <p>线路</p>
+            </div>
+            <div class="col-sm-3">
+              <select ng-model="mod.xl" style="width:163px;" required>
+                <option  ng-repeat="data in mod.xldata" >{{data.xl}}</option>
+
+              </select>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <p>车牌号</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.cph" required/>
+            </div>
+
+            <div class="col-sm-3">
+              <p>车次号</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.cch" required/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <p>出发站</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.cfz" required/>
+            </div>
+
+            <div class="col-sm-3">
+              <p>计划发车时间</p>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <div>
+                  <p class="input-group">
+                    <input type="text" ng-model="mod.jhfcsj" class="form-control" id="inpstart" placeholder="起始时间">
+            <span class="input-group-btn">
+                <button type="button" onclick="jeDate({dateCell: '#inpstart'})" class="btn btn-default">
+                  <em class="ion-calendar">
+                  </em>
+                </button>
+            </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <p>实际发车时间</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.sjfcsj" required/>
+            </div>
+
+            <div class="col-sm-3">
+              <p>计划到达时间</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.jhddsj" required/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <p>实际到达时间</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.sjddsj" required/>
+            </div>
+
+            <div class="col-sm-3">
+              <p>添加人姓名</p>
+            </div>
+            <div class="col-sm-3">
+              <input type="text" ng-model="mod.tjrxm" required/>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button ng-click="ok()" class="btn btn-primary">添加</button>
+          <button ng-click="cancel()" class="btn btn-warning">取消</button>
+        </div>
+      </div>
+        </div>
+    </script>
+    <div class="col-sm-2">
+      <button ng-click="mod.open('lg')" class="btn btn-primary">发车计划添加</button>
+    </div>
+
+
+        <table class="table " style="min-width:1300px;" ng-table="chart.tableParams" id="targetTable">
+        <thead>
+          <tr>
+            <th></th>
+            <th ng-click="changeOrder('gs')" ng-class="{dropup:order === ''}">
+              公司
+              <span class="caret"></span>
+            </th>
+            <th ng-click="changeOrder('fgs')" ng-class="{dropup:order === ''}">
+              分公司
+              <span class="caret"></span>
+            </th>
+            <th ng-click="changeOrder('cd')" ng-class="{dropup:order === ''}">
+              车队
+              <span class="caret"></span>
+            </th>
+            <th ng-click="changeOrder('xl')" ng-class="{dropup:order === ''}">
+              线路
+              <span class="caret"></span>
+            </th>
+            <th ng-click="changeOrder('cph')" ng-class="{dropup:order === ''}">
+              车牌号
+              <span class="caret"></span>
+            </th>
+            <th>
+              车次号
+            </th>
+            <th>
+              出发站
+            </th>
+            <th>
+              计划发车时间
+            </th>
+            <th>
+              实际发车时间
+            </th>
+            <th>
+              计划到达时间
+            </th>
+            <th>
+              实际到达时间
+            </th>
+            <th>
+              添加人姓名
+            </th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="data in table.data2 | orderBy:order + orderType" >
+            <td><button class="btn btn-sm btn-info"  ng-click="mod.openrevise('',data)">维修</button></td>
+            <td>
+              <span  editable-text="data.gs" e-name="gs" e-form="rowform">
+                {{ data.gs }}
+              </span>
+            </td>
+            <td>
+              <span  editable-text="data.fgs" e-name="fgs" e-form="rowform">
+                {{ data.fgs }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.cd" e-name="cd" e-form="rowform">
+                {{ data.cd }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.xl" e-name="xl" e-form="rowform">
+                {{ data.xl }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.cph" e-name="cph" e-form="rowform">
+                {{ data.cph }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.cch" e-name="cch" e-form="rowform">
+                {{ data.cch }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.cfz" e-name="cfz" e-form="rowform">
+                {{ data.cfz }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.jhfcsj" e-name="jhfcsj" e-form="rowform">
+                {{ data.jhfcsj }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.sjfcsj" e-name="sjfcsj" e-form="rowform">
+                {{ data.sjfcsj }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.jhddsj" e-name="jhddsj" e-form="rowform">
+                {{ data.jhddsj }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.sjddsj" e-name="sjddsj" e-form="rowform">
+                {{ data.sjddsj }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="data.tjrxm" e-name="tjrxm" e-form="rowform">
+                {{ data.tjrxm }}
+              </span>
+            </td>
+
+            <td style="white-space: nowrap">
+              <form editable-form="" name="rowform" onbeforesave="table.savePerson($data, data.id)" ng-show="rowform.$visible" shown="table.inserted == data" class="form-buttons form-inline">
+                <button type="submit" ng-disabled="rowform.$waiting" title="Save" class="btn btn-sm btn-info"><em class="ion-checkmark-round"></em></button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" title="Cancel" class="btn btn-sm btn-default"><em class="ion-android-close"></em></button>
+              </form>
+              <div ng-show="!rowform.$visible" class="buttons">
+                <button ng-click="rowform.$show()" title="Edit" class="btn btn-sm btn-info"><em class="ion-edit"></em></button>
+                <button type="button" ng-click="table.removePerson($index)" class="btn btn-sm btn-danger"><em class="ion-trash-b"></em></button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      <!--</form>-->
+</div>
+</div>
+<!--  </div>-->
+<!--</div>-->
+<script type="text/javascript" >
+  jeDate({
+    dateCell: "#inpstart",
+    format: "YYYY-MM-DD hh:mm:ss",
+    minDate: "2000-01-01 00:00:00", //设定最小日期为当前日期
+    festival:true,
+    maxDate: "2099-06-16 23:59:59", //最大日期
+    isTime: true,
+    zIndex:1111121
+  })
+  var idTmr;
+  function  getExplorer() {
+    var explorer = window.navigator.userAgent ;
+    //ie
+    if (explorer.indexOf("MSIE") >= 0) {
+      return 'ie';
+    }
+    //firefox
+    else if (explorer.indexOf("Firefox") >= 0) {
+      return 'Firefox';
+    }
+    //Chrome
+    else if(explorer.indexOf("Chrome") >= 0){
+      return 'Chrome';
+    }
+    //Opera
+    else if(explorer.indexOf("Opera") >= 0){
+      return 'Opera';
+    }
+    //Safari
+    else if(explorer.indexOf("Safari") >= 0){
+      return 'Safari';
+    }
+  }
+  function method1(tableid) {
+    if(getExplorer()=='ie')
+    {
+      var curTbl = document.getElementById(tableid);
+      var oXL = new ActiveXObject("Excel.Application");
+
+      var oWB = oXL.Workbooks.Add();
+
+      var xlsheet = oWB.Worksheets(1);
+
+      var sel = document.body.createTextRange();
+      sel.moveToElementText(curTbl);
+
+      sel.select();
+
+      sel.execCommand("Copy");
+
+      xlsheet.Paste();
+
+      oXL.Visible = true;
+
+
+      try {
+        var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+      } catch (e) {
+        print("Nested catch caught " + e);
+      } finally {
+        oWB.SaveAs(fname);
+
+        oWB.Close(savechanges = false);
+        //xls.visible = false;
+        oXL.Quit();
+        oXL = null;
+
+        //window.setInterval("Cleanup();",1);
+        idTmr = window.setInterval("Cleanup();", 1);
+
+      }
+
+    }
+    else
+    {
+      tableToExcel(tableid)
+    }
+  }
+  function Cleanup() {
+    window.clearInterval(idTmr);
+    CollectGarbage();
+  }
+  var tableToExcel = (function() {
+    var uri = 'data:application/vnd.ms-excel;base64,',
+            template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+            base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },
+            format = function(s, c) {
+              return s.replace(/{(\w+)}/g,
+                      function(m, p) { return c[p]; }) }
+    return function(table, name) {
+      if (!table.nodeType) table = document.getElementById(table)
+      var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+      window.location.href = uri + base64(format(template, ctx))
+    }
+  })()
+
+</script>

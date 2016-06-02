@@ -1,0 +1,613 @@
+<br>
+<fieldset class="child">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <!-- <div class="col-md-2">-->
+                <select name="account" class="form-control">
+                    <option>计划发车时间</option>
+                    <option>实际发车时间</option>
+                    <option>计划到达时间</option>
+                    <option>实际到达时间</option>
+                </select><br/>
+                <!-- </div>-->
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <div>
+                    <p class="input-group">
+                        <input type="text" class="form-control" id="inpstart" placeholder="起始时间">
+            <span class="input-group-btn">
+                <button type="button" onclick="jeDate(start)" class="btn btn-default">
+                    <em class="ion-calendar">
+                    </em>
+                </button>
+            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <div >
+                    <p class="input-group">
+                        <input type="text" class="form-control" id="inpend" placeholder="结束时间"/>
+            <span class="input-group-btn">
+                <button type="button" onClick="jeDate(end)"
+                        class="btn btn-default" >
+                    <em class="ion-calendar">
+                    </em>
+                </button>
+            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-sm-2">
+            <div ng-controller="ModalController as mod">
+                <script type="text/ng-template" id="/myModalContent.html">
+                    <div class="modal-header">
+                        <h4 id="myModalLabel" class="modal-title">发车计划添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>公司</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="uiSelectController as uisel" class="form-group">
+                                    <ui-select ng-model="uisel.person.selected" theme="bootstrap"
+                                               ng-disabled="uisel.disabled">
+                                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="person in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                                            <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>分公司</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="uiSelectController as uisel" class="form-group">
+                                    <ui-select ng-model="uisel.person.selected" theme="bootstrap"
+                                               ng-disabled="uisel.disabled">
+                                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="person in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                                            <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>车队</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="uiSelectController as uisel" class="form-group">
+                                    <ui-select ng-model="uisel.person.selected" theme="bootstrap"
+                                               ng-disabled="uisel.disabled">
+                                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="person in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                                            <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>线路</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="uiSelectController as uisel" class="form-group">
+                                    <ui-select ng-model="uisel.person.selected" theme="bootstrap"
+                                               ng-disabled="uisel.disabled">
+                                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="person in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                                            <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>车牌号</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="uiSelectController as uisel" class="form-group">
+                                    <ui-select ng-model="uisel.person.selected" theme="bootstrap"
+                                               ng-disabled="uisel.disabled">
+                                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="person in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                                            <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>车次号</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>出发站</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>发车时间</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>实际发车时间</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>到达时间</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>实际运行时间</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>计划发车时间</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>添加人姓名</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div ng-controller="FormValidationController as form">
+                                    <input type="text" name="sometext" required="" ng-model="sometext"
+                                           class="form-control"/>
+                                    <div ng-messages="form.formValidate.sometext.$error"
+                                         ng-if="form.formValidate.$submitted" class="text-danger"><span
+                                            ng-message="required">This field is required</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="ok()" class="btn btn-primary">添加</button>
+                        <button ng-click="cancel()" class="btn btn-warning">取消</button>
+                    </div>
+                </script>
+                <div class="col-sm-2">
+                    <button ng-click="mod.open()" class="btn btn-primary">发车计划添加</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div ng-controller="ModalController2 as mod">
+                <script type="text/ng-template" id="/myModalContent2.html">
+                    <div class="modal-header">
+                        <h3 id="myModalLabel" class="modal-title">导入发车计划</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-controller="FileUploadController as form" nv-file-drop="" uploader="form.uploader"
+                             filters="queueLimit, customFilter">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-show="form.uploader.isHTML5">
+                                        <div nv-file-over="" uploader="form.uploader"
+                                             over-class="bg-info"
+                                             class="box-placeholder my-drop-zone">将文件拖拽到这里
+                                        </div>
+                                    </div>
+                                    <input filestyle="" type="file" data-button-text="选择文件"
+                                           data-class-button="btn btn-default"
+                                           data-class-input="form-control inline" nv-file-select=""
+                                           uploader="form.uploader" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="margin-bottom: 40px" class="col-md-12">
+                                    <div class="table">
+                                        <p align="center">导入的文件列表</p>
+
+                                        <div ng-if="form.uploader.queue.length">
+                                            <table ng-if="form.uploader.queue.length" class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th width="50%">文件名</th>
+                                                    <th ng-show="form.uploader.isHTML5">文件大小</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="item in form.uploader.queue">
+                                                    <td><strong>{{ item.file.name }}</strong></td>
+                                                    <td ng-show="form.uploader.isHTML5" nowrap="">{{
+                                                        item.file.size/1024/1024|number:2 }} MB
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="ok()" class="btn btn-primary">导入</button>
+                        <button ng-click="cancel()" class="btn btn-warning">取消</button>
+                    </div>
+                </script>
+                <button ng-click="mod.open()" class="btn btn-primary">导入</button>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div ng-controller="ModalController3 as mod">
+                <script type="text/ng-template" id="/myModalContent3.html">
+                    <div class="modal-header">
+                        <h4 id="myModalLabel" class="modal-title">导出</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>这是导出部分的内容</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="ok()" class="btn btn-primary">导出</button>
+                        <button ng-click="cancel()" class="btn btn-warning">取消</button>
+                    </div>
+                    </div>
+                </script>
+                <button ng-click="mod.open('lg')" class="btn btn-primary">导出</button>
+            </div>
+        </div>
+    </div>
+<!--</fieldset>-->
+<!--<br>-->
+<!--<fieldset class="child">-->
+    <div ng-controller="uiSelectController as uisel" class="form-group">
+        <div class="row">
+            <div class="col-md-1">
+                <p class="m0">始发站</p>
+            </div>
+            <div class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-1">
+                <p class="m0">途经站</p>
+            </div>
+            <div class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-1">
+                <p class="m0">终点站</p>
+            </div>
+            <div class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="mb-sm btn btn-primary ripple">查询</button>
+                <button type="button" ng-show="!isShow" ng-click="showhide()" class="mb-sm btn btn-info ripple">更多条件
+                </button>
+                <button type="button" ng-show="isShow" ng-click="showhide()" class="mb-sm btn btn-info ripple">收起
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="isShow" class="col-md-1">
+                <p class="m0">车牌号</p>
+            </div>
+            <div ng-show="isShow" class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div ng-show="isShow" class="col-md-1">
+                <p class="m0">所属机构</p>
+            </div>
+            <div ng-show="isShow" class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div ng-show="isShow" class="col-md-1">
+                <p class="m0">车次号</p>
+            </div>
+            <div ng-show="isShow" class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div ng-show="isShow" class="col-md-1">
+                <p class="m0">班线</p>
+            </div>
+            <div ng-show="isShow" class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="isShow" class="col-md-1">
+                <p class="m0">添加人姓名</p>
+            </div>
+            <div ng-show="isShow" class="col-md-2">
+                <ui-select ng-model="uisel.datas.selected" theme="bootstrap" ng-disabled="uisel.disabled">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="datas in uisel.data | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="datas.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+<!--</fieldset>-->
+
+<!--<fieldset class="last-child">-->
+<div ng-controller="DataTableController as table" >
+    <div class="card">
+        <div class="card-heading">发车计划</div>
+        <div class="card-body">
+            <form class="form-inline">
+                <table datatable="ng" dt-options="table.dtOptions" dt-column-defs="table.dtColumnDefs"
+                       class="table table-striped mv-lg">
+                    <thead>
+                    <tr>
+                        <th>公司</th>
+                        <th>分公司</th>
+                        <th>车队</th>
+                        <th>线路</th>
+                        <th>车牌号</th>
+                        <th>车次号</th>
+                        <th>出发站</th>
+                        <th>发车时间</th>
+                        <th>计划发车时间</th>
+                        <th>实际发车时间</th>
+                        <th>到达时间</th>
+                        <th>实际运行时间</th>
+                        <th>添加人姓名</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="hero in table.data">
+
+                        <td>{{ hero.gs }}</td>
+                        <td>{{ hero.fgs }}</td>
+                        <td>{{ hero.cd }}</td>
+                        <td>{{ hero.xl }}</td>
+                        <td>{{ hero.cph }}</td>
+                        <td>{{ hero.cch }}</td>
+                        <td>{{ hero.cfz }}</td>
+                        <td>{{ hero.fcsj }}</td>
+                        <td>{{ hero.jhfcsj }}</td>
+                        <td>{{ hero.sjfcsj }}</td>
+                        <td>{{ hero.ddsj }}</td>
+                        <td>{{ hero.sjyxsj }}</td>
+                        <td>{{ hero.tjrxm }}</td>
+                        <td>
+<!--                            <button type="button" ng-click="table.modifyPerson($index)" class="btn btn-sm btn-warning">
+                                <em class="ion-edit"></em></button>-->
+                            <button type="button" ng-click="table.removePerson($index)" class="btn btn-sm btn-danger">
+                                <em class="ion-trash-b"></em></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<div ng-controller="NgTableController as table" class="container-fluid">
+    <div class="card">
+        <div class="card-heading">
+            <div class="card-title">发车计划</div>
+        </div>
+        <table ng-table="tableParams4" class="ng-table-wrapper table table-striped">
+            <tr ng-repeat="user in $data" ng-class="{ 'edit': user.$edit }">
+                <td data-title="'公司'">
+                    <span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'分公司'" width="200" class="text-center"><span ng-if="!user.$edit">{{user.age}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="number" ng-model="user.age" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'公司'"><span ng-if="!user.$edit">{{user.name}}</span>
+                    <div ng-if="user.$edit">
+                        <input type="text" ng-model="user.name" class="form-control"/>
+                    </div>
+                </td>
+                <td data-title="'修改删除'" width="200" class="text-center">
+                    <a ng-if="!user.$edit" href="" ng-click="user.$edit = true" class="btn btn-default btn-flat">
+                        <em class="ion-edit">
+                        </em>
+                    </a>
+                    <a ng-if="user.$edit" href="" ng-click="user.$edit = false" class="btn btn-info">
+                        <em class="ion-checkmark-round">
+                        </em>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>-->
+</fieldset>
+<script type="text/javascript">
+    var start = {
+        dateCell: '#inpstart',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        //minDate: '2000-01-01 00:00:00', //设定最小日期为当前日期
+        festival:true,
+        maxDate: '2099-06-16 23:59:59', //最大日期
+        isTime: true,
+        choosefun: function(datas){
+            end.minDate = datas; //开始日选好后，重置结束日的最小日期
+        }
+    };
+    var end = {
+        dateCell: '#inpend',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        minDate: jeDate.now(0), //设定最小日期为当前日期
+        festival:true,
+        maxDate: '2099-06-16 23:59:59', //最大日期
+        isTime: true,
+        choosefun: function(datas){
+            start.maxDate = datas; //将结束日的初始值设定为开始日的最大日期
+        }
+    };
+</script>
